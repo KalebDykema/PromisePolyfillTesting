@@ -1,0 +1,15 @@
+{
+  "name": "promiseconversion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kaleb Dykema",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "gulp-babel": "^8.0.0"
+  }
+}
