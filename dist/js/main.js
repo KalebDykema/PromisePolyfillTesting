@@ -1,19 +1,19 @@
 "use strict";
 
-console.log('Hello world');
-
-var getProfile = function getProfile(username) {
-  return fetch("https://api.github.com/users/".concat(username)).then(function (data) {
-    console.log(data.json())({
-      name: data.name,
-      location: data.location,
-      company: data.company
-    });
-  })["catch"](function (e) {
-    console.warn(e);
+var sayHi = function sayHi(name) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve("Hi ".concat(name, "!"));
+    }, 500);
   });
 };
 
-getProfile('KalebDykema').then(function (response) {
+sayHi('Kaleb').then(function (response) {
+  console.log(response);
+});
+sayHi('Travis').then(function (response) {
+  console.log(response);
+});
+sayHi('Jason').then(function (response) {
   console.log(response);
 });

@@ -1,21 +1,22 @@
-console.log('Hello world')
-
-const getProfile = username => {
-    return fetch(`https://api.github.com/users/${username}`)
-        .then((data) => {
-            console.log(data.json())
-            ({
-                name: data.name,
-                location: data.location,
-                company: data.company
-            })
-        })
-        .catch(e => {
-            console.warn(e)
-        })
+const sayHi = name => {
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(`Hi ${name}!`)
+        }, 500)
+    })
 }
 
-getProfile('KalebDykema')
+sayHi('Kaleb')
+    .then(response => {
+        console.log(response)
+    })
+
+sayHi('Travis')
+    .then(response => {
+        console.log(response)
+    })
+
+sayHi('Jason')
     .then(response => {
         console.log(response)
     })
