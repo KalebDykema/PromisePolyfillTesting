@@ -1,5 +1,3 @@
-"use strict";
-
 var sayHi = function sayHi(name) {
   return new Promise(function (resolve, reject) {
     setTimeout(function () {

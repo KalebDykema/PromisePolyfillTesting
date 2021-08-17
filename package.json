@@ -2,7 +2,7 @@
   "name": "promiseconversion",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,8 @@
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
     "browser-sync": "^2.27.5",
-    "gulp-concat": "^2.6.1"
+    "core-js": "^3.16.2",
+    "gulp-concat": "^2.6.1",
+    "promise-polyfill": "^8.2.0"
   }
 }

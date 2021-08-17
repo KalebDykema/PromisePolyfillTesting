@@ -1,4 +1,5 @@
-var gulp = require ('gulp'),
+var Promise = require('promise-polyfill')
+    gulp = require('gulp'),
     babel = require('gulp-babel'),
 	concat = require('gulp-concat'),
     browserSync = require('browser-sync').create(),
@@ -17,13 +18,14 @@ const transpileJS = function(strData=false){
 	gulp.src([`src/js/*.js`])
 		.pipe(concat('main.js'))
 		.pipe(babel({
-			presets: ['@babel/preset-env']
-			// "presets": [
-			// 	["@babel/preset-env", {
-			// 		"targets": "last 2 versions, ie 11"
-			// 	}]
-			// ]
-		}))
+			presets: [
+                ['@babel/env', {
+                    useBuiltIns: 'entry',
+                    corejs: 3,
+                    modules: false
+                }]
+            ]
+        }))
 		.pipe(gulp.dest(`dist/js/`))
 	reload()
 }
