@@ -1,5 +1,5 @@
 if(typeof Promise){
-    document.querySelector('h1').textContent = 'Polyfilled!'
+    document.querySelector('h1').textContent = 'Working!'
 }
 
 const sayHi = name => {

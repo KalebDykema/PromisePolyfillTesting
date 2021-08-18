@@ -1,5 +1,7 @@
-var Promise = require('promise-polyfill')
+var promisePolyfill = require('core-js/modules/es.promise'),
     gulp = require('gulp'),
+	mergeStream = require('merge-stream')
+	rjs = require('gulp-requirejs')
     babel = require('gulp-babel'),
 	concat = require('gulp-concat'),
     browserSync = require('browser-sync').create(),
@@ -13,21 +15,39 @@ const getFolders = function (dir) {
 		});
 };
 
-const transpileJS = function(strData=false){
-	console.log(`Transpile JS: ${strData}`)
-	gulp.src([`src/js/*.js`])
+// Without requireJS
+const transpileJS = function(){
+	// gulp.src(promisePolyfill)
+	gulp.src(`src/js/*.js`)
 		.pipe(concat('main.js'))
 		.pipe(babel({
 			presets: [
-                ['@babel/env', {
-                    useBuiltIns: 'entry',
-                    corejs: 3,
-                    modules: false
-                }]
-            ]
-        }))
+				// ['@babel/env']
+				['@babel/env', {
+					useBuiltIns: 'usage',
+					corejs: 3,
+					modules: false
+				}]
+			]
+		}))
 		.pipe(gulp.dest(`dist/js/`))
 	reload()
+}
+// With requireJS
+const transpileRJS = function(){
+	return rjs({
+		baseUrl: `./`,
+		name: 'node_modules/core-js/modules/es.promise.js',
+		out: 'main.js',
+		// shim: {
+		// }
+	})
+	.pipe(babel({
+		presets: [
+			['@babel/env']
+		]
+	}))
+	.pipe(gulp.dest('dist/js/'))
 }
 
 gulp.task('browser-sync', function () {
@@ -37,6 +57,7 @@ gulp.task('browser-sync', function () {
         }
 	});
 	transpileJS()
+	// transpileRJS()
 	// https://gulpjs.com/docs/en/getting-started/explaining-globs/
 	gulp.watch(['dist/*.html']).on('change', reload);
 	gulp.watch(['src/js']).on('change', transpileJS);
