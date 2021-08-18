@@ -1,3 +1,7 @@
+if(typeof Promise){
+    document.querySelector('h1').textContent = 'Polyfilled!'
+}
+
 const sayHi = name => {
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
@@ -6,17 +10,23 @@ const sayHi = name => {
     })
 }
 
+const addToUl = (text) => {
+    const li = document.createElement('li')
+    li.textContent = text
+    document.querySelector('ul').appendChild(li)
+}
+
 sayHi('Kaleb')
     .then(response => {
-        console.log(response)
+        addToUl(response)
     })
 
 sayHi('Travis')
     .then(response => {
-        console.log(response)
+        addToUl(response)
     })
 
 sayHi('Jason')
     .then(response => {
-        console.log(response)
+        addToUl(response)
     })
