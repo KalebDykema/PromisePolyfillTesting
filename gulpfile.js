@@ -1,6 +1,4 @@
-var promisePolyfill = require('core-js/modules/es.promise'),
-    gulp = require('gulp'),
-	mergeStream = require('merge-stream')
+var gulp = require('gulp'),
 	rjs = require('gulp-requirejs')
     babel = require('gulp-babel'),
 	concat = require('gulp-concat'),
@@ -34,26 +32,26 @@ const transpileJS = function(){
 	reload()
 }
 // With requireJS
-const transpileRJS = function(){
-	return rjs({
-		baseUrl: `./`,
-		name: 'node_modules/core-js/modules/es.promise.js',
-		out: 'main.js',
-		// shim: {
-		// }
-	})
-	.pipe(babel({
-		presets: [
-			['@babel/env']
-		]
-	}))
-	.pipe(gulp.dest('dist/js/'))
-}
-const transpileModules = function(){
-	gulp.src('./node_modules/systemjs/dist/system.js')
-		.pipe(concat('system.js'))
-		.pipe(gulp.dest(`dist/js/`))
-}
+// const transpileRJS = function(){
+// 	return rjs({
+// 		baseUrl: `./`,
+// 		name: 'node_modules/core-js/modules/es.promise.js',
+// 		out: 'main.js',
+// 		// shim: {
+// 		// }
+// 	})
+// 	.pipe(babel({
+// 		presets: [
+// 			['@babel/env']
+// 		]
+// 	}))
+// 	.pipe(gulp.dest('dist/js/'))
+// }
+// const transpileModules = function(){
+// 	gulp.src('./node_modules/systemjs/dist/system.js')
+// 		.pipe(concat('system.js'))
+// 		.pipe(gulp.dest(`dist/js/`))
+// }
 
 gulp.task('browser-sync', function () {
 	browserSync.init({
