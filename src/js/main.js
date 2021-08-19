@@ -1,5 +1,3 @@
-import System from '../node_modules/systemjs/dist/system.js'
-
 if(typeof Promise){
     document.querySelector('h1').textContent = 'Working!'
 }
