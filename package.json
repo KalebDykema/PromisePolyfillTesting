@@ -4,22 +4,21 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c"
   },
   "author": "Kaleb Dykema",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "gulp-requirejs": "^1.4.0"
+    "rollup": "^2.56.2",
+    "rollup-plugin-polyfill-node": "^0.7.0"
   },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
     "browser-sync": "^2.27.5",
     "core-js": "^3.16.2",
-    "gulp-concat": "^2.6.1",
-    "systemjs": "^6.10.3"
+    "gulp-concat": "^2.6.1"
   }
 }

@@ -1,13 +1,15 @@
 "use strict";
 
+var _index = require("core-js/stable/promise/index");
+
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-if (typeof Promise === "undefined" ? "undefined" : _typeof(Promise)) {
+if (_typeof(_index.Promise)) {
   document.querySelector('h1').textContent = 'Working!';
 }
 
 var sayHi = function sayHi(name) {
-  return new Promise(function (resolve, reject) {
+  return new _index.Promise(function (resolve, reject) {
     setTimeout(function () {
       resolve("Hi ".concat(name, "!"));
     }, 500);

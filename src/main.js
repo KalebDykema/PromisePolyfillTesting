@@ -1,3 +1,5 @@
+import { Promise } from 'core-js/stable/promise/index'
+
 if(typeof Promise){
     document.querySelector('h1').textContent = 'Working!'
 }
