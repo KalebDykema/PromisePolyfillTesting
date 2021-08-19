@@ -1,4 +1,5 @@
 var promisePolyfill = require('core-js/modules/es.promise'),
+
     gulp = require('gulp'),
 	mergeStream = require('merge-stream')
 	rjs = require('gulp-requirejs')
@@ -26,7 +27,7 @@ const transpileJS = function(){
 				['@babel/env', {
 					useBuiltIns: 'usage',
 					corejs: 3,
-					modules: false
+					modules: 'systemjs'
 				}]
 			]
 		}))
@@ -49,6 +50,11 @@ const transpileRJS = function(){
 	}))
 	.pipe(gulp.dest('dist/js/'))
 }
+const transpileModules = function(){
+	gulp.src('./node_modules/systemjs/dist/system.js')
+		.pipe(concat('system.js'))
+		.pipe(gulp.dest(`dist/js/`))
+}
 
 gulp.task('browser-sync', function () {
 	browserSync.init({
@@ -57,6 +63,7 @@ gulp.task('browser-sync', function () {
         }
 	});
 	transpileJS()
+	transpileModules()
 	// transpileRJS()
 	// https://gulpjs.com/docs/en/getting-started/explaining-globs/
 	gulp.watch(['dist/*.html']).on('change', reload);

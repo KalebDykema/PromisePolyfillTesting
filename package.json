@@ -10,16 +10,19 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-polyfiller": "0.0.1",
     "gulp-requirejs": "^1.4.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.15.0",
     "browser-sync": "^2.27.5",
     "core-js": "^3.16.2",
     "gulp-concat": "^2.6.1",
-    "merge-stream": "^2.0.0"
+    "merge-stream": "^2.0.0",
+    "systemjs": "^6.10.3"
   }
 }
