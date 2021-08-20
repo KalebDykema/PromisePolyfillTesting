@@ -1,37 +1,50 @@
-(function () {
-    'use strict';
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+}((function () { 'use strict';
 
-    if(typeof Promise){
-        document.querySelector('h1').textContent = 'Working!';
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
     }
 
-    const sayHi = name => {
-        return new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-                resolve(`Hi ${name}!`);
-            }, 500);
-        })
-    };
+    return _typeof(obj);
+  }
 
-    const addToUl = (text) => {
-        const li = document.createElement('li');
-        li.textContent = text;
-        document.querySelector('ul').appendChild(li);
-    };
+  if (typeof Promise === "undefined" ? "undefined" : _typeof(Promise)) {
+    document.querySelector('h1').textContent = 'Working!';
+  }
 
-    sayHi('Kaleb')
-        .then(response => {
-            addToUl(response);
-        });
+  var sayHi = function sayHi(name) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve("Hi ".concat(name, "!"));
+      }, 500);
+    });
+  };
 
-    sayHi('Travis')
-        .then(response => {
-            addToUl(response);
-        });
+  var addToUl = function addToUl(text) {
+    var li = document.createElement('li');
+    li.textContent = text;
+    document.querySelector('ul').appendChild(li);
+  };
 
-    sayHi('Jason')
-        .then(response => {
-            addToUl(response);
-        });
+  sayHi('Kaleb').then(function (response) {
+    addToUl(response);
+  });
+  sayHi('Travis').then(function (response) {
+    addToUl(response);
+  });
+  sayHi('Jason').then(function (response) {
+    addToUl(response);
+  });
 
-}());
+})));
