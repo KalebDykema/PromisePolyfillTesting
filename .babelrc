@@ -1,0 +1,4 @@
+{   
+    "babelHelpers": "bundled",
+    "presets": ["@babel/env"]
+}

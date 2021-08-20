@@ -1,8 +1,11 @@
-var gulp = require('gulp'),
-    babel = require('gulp-babel'),
-	concat = require('gulp-concat'),
-    browserSync = require('browser-sync').create(),
-    reload = browserSync.reload
+const gulp = require('gulp')
+const rollup = require('rollup')
+const resolve = require('@rollup/plugin-node-resolve')
+// const babel = require('gulp-babel')
+const babel = require('@rollup/plugin-babel')
+const concat = require('gulp-concat')
+const browserSync = require('browser-sync').create()
+const reload = browserSync.reload
 
 // utilty function to get all folders in a directory
 const getFolders = function (dir) {
@@ -14,7 +17,6 @@ const getFolders = function (dir) {
 
 // Without requireJS
 const transpileJS = function(){
-	// gulp.src(promisePolyfill)
 	gulp.src(`src/*.js`)
 		.pipe(concat('main.js'))
 		.pipe(babel({
@@ -31,13 +33,43 @@ const transpileJS = function(){
 	reload()
 }
 
+// Without requireJS
+const rollupJS = function(){
+	return rollup
+		.rollup({
+			input: '/src/main.js',
+			plugins: [resolve, babel]
+		})
+		.then(bundle => {
+			return bundle.write({
+				file: './dist/js/main.js',
+				format: 'umd'
+			})
+		})
+}
+
+// gulp.task('build', () => {
+// 	return rollup
+// 		.rollup({
+// 			input: './src/main.js'
+// 		})
+// 		.then(bundle => {
+// 			return bundle.write({
+// 				file: './dist/js/main.js',
+// 				format: 'iife',
+// 				name: 'library'
+// 			})
+// 		})
+// })
+
 gulp.task('browser-sync', function () {
 	browserSync.init({
 		server: {
             baseDir: './dist'
         }
 	});
-	transpileJS()
+	rollupJS()
+	// transpileJS()
 	// transpileModules()
 	// transpileRJS()
 	// https://gulpjs.com/docs/en/getting-started/explaining-globs/

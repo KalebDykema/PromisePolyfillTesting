@@ -1,6 +1,8 @@
 export default {
     input: 'src/main.js',
     output: {
-        file: 'main.js'
+        file: './dist/js/main.js',
+        format: 'es',
+        sourcemap: true
     }
 }
