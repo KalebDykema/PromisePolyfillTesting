@@ -1963,9 +1963,8 @@ if (Promise) {
 
 var sayHi = function sayHi(name) {
   return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve("Hi ".concat(name, "!"));
-    }, 500);
+    // setTimeout(()=>{
+    resolve("Hi ".concat(name, "!")); // }, 500)
   });
 };
 

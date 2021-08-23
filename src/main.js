@@ -4,9 +4,9 @@ if(Promise){
 
 const sayHi = name => {
     return new Promise((resolve, reject)=>{
-        setTimeout(()=>{
+        // setTimeout(()=>{
             resolve(`Hi ${name}!`)
-        }, 500)
+        // }, 500)
     })
 }
 
