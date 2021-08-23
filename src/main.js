@@ -1,4 +1,4 @@
-if(typeof Promise){
+if(Promise){
     document.querySelector('h1').textContent = 'Working!'
 }
 

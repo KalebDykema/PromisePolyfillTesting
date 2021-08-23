@@ -2,8 +2,8 @@
     "presets": [
         ["@babel/env", {
         	"useBuiltIns": "usage",
-        	"corejs": 3
-        	// "modules": "systemjs"
+        	"corejs": 3,
+        	"modules": false
         }]
     ]
 }

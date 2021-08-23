@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const rollup = require('rollup')
 const resolve = require('@rollup/plugin-node-resolve')
+const commonjs = require('@rollup/plugin-commonjs')
 // const babel = require('gulp-babel')
 const babel = require('@rollup/plugin-babel')
 const concat = require('gulp-concat')
@@ -40,19 +41,19 @@ const rollupJS = function(){
 			input: './src/main.js',
 			plugins: [resolve.nodeResolve(), babel.babel({ 
 				babelHelpers: 'bundled'
-			})]
+			}), commonjs()]
 		})
 		.then(bundle => {
 			return bundle.write({
 				file: './dist/js/main.js',
-				format: 'umd'
+				format: 'cjs'
 			})
 		})
 }
 
 gulp.task('build', async () => {
 	rollupJS()
-	reload()
+	// reload()
 	// return rollup
 	// 	.rollup({
 	// 		input: './src/main.js'
@@ -72,7 +73,7 @@ gulp.task('browser-sync', function () {
             baseDir: './dist'
         }
 	});
-	rollupJS()
+	// rollupJS()
 	// transpileJS()
 	// transpileModules()
 	// transpileRJS()
