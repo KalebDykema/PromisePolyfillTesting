@@ -1,5 +1,5 @@
 (function (factory) {
-  typeof define === 'function' && define.amd ? define(factory) :
+  typeof define === 'function' && define.amd ? define(['core-js/modules/es.object.to-string.js', 'core-js/modules/es.promise.js'], factory) :
   factory();
 }((function () { 'use strict';
 

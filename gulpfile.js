@@ -50,19 +50,21 @@ const rollupJS = function(){
 		})
 }
 
-// gulp.task('build', () => {
-// 	return rollup
-// 		.rollup({
-// 			input: './src/main.js'
-// 		})
-// 		.then(bundle => {
-// 			return bundle.write({
-// 				file: './dist/js/main.js',
-// 				format: 'iife',
-// 				name: 'library'
-// 			})
-// 		})
-// })
+gulp.task('build', async () => {
+	rollupJS()
+	reload()
+	// return rollup
+	// 	.rollup({
+	// 		input: './src/main.js'
+	// 	})
+	// 	.then(bundle => {
+	// 		return bundle.write({
+	// 			file: './dist/js/main.js',
+	// 			format: 'iife',
+	// 			name: 'library'
+	// 		})
+	// 	})
+})
 
 gulp.task('browser-sync', function () {
 	browserSync.init({
