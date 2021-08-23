@@ -46,7 +46,7 @@ const rollupJS = function(){
 		.then(bundle => {
 			return bundle.write({
 				file: './dist/js/main.js',
-				format: 'cjs'
+				format: 'iife'
 			})
 		})
 }

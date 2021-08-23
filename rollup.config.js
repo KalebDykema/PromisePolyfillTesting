@@ -6,7 +6,7 @@ export default {
     input: 'src/main.js',
     output: {
         file: './dist/js/main.js',
-        format: 'cjs'
+        format: 'iife'
     },
     plugins: [nodeResolve(), commonjs(), babel({ 
         babelHelpers: 'bundled'
