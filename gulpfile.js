@@ -8,14 +8,6 @@ const concat = require('gulp-concat')
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 
-// utilty function to get all folders in a directory
-const getFolders = function (dir) {
-	return fs.readdirSync(dir)
-		.filter(function (file) {
-			return fs.statSync(path.join(dir, file)).isDirectory();
-		});
-};
-
 // Without requireJS
 const transpileJS = function(){
 	gulp.src(`src/*.js`)
@@ -34,8 +26,12 @@ const transpileJS = function(){
 	reload()
 }
 
-// Without requireJS
 const rollupJS = function(){
+	bundle()
+		.then(()=>reload())
+}
+
+const bundle = function(){
 	return rollup
 		.rollup({
 			input: './src/main.js',
@@ -53,18 +49,6 @@ const rollupJS = function(){
 
 gulp.task('build', async () => {
 	rollupJS()
-	// reload()
-	// return rollup
-	// 	.rollup({
-	// 		input: './src/main.js'
-	// 	})
-	// 	.then(bundle => {
-	// 		return bundle.write({
-	// 			file: './dist/js/main.js',
-	// 			format: 'iife',
-	// 			name: 'library'
-	// 		})
-	// 	})
 })
 
 gulp.task('browser-sync', function () {
@@ -75,8 +59,8 @@ gulp.task('browser-sync', function () {
 	});
 	rollupJS()
 	// transpileJS()
-	// transpileModules()
 	// https://gulpjs.com/docs/en/getting-started/explaining-globs/
 	gulp.watch(['dist/*.html']).on('change', reload);
-	gulp.watch(['src/*.js']).on('change', transpileJS);
+	// gulp.watch(['src/*.js']).on('change', transpileJS);
+	gulp.watch(['src/main.js']).on('change', rollupJS);
 });

@@ -4,7 +4,7 @@ if(typeof Promise){
 
 const sayHi = name => {
     return new Promise((resolve, reject)=>{
-        console.log(name)
+        console.log('Hi', name)
         resolve(`Hi ${name}!`)
     })
     // return `Hi ${name}!`
