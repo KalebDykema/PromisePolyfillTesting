@@ -1,13 +1,13 @@
-if(Promise){
+if(typeof Promise){
     document.querySelector('h1').textContent = 'Working!'
 }
 
 const sayHi = name => {
     return new Promise((resolve, reject)=>{
-        // setTimeout(()=>{
-            resolve(`Hi ${name}!`)
-        // }, 500)
+        console.log(name)
+        resolve(`Hi ${name}!`)
     })
+    // return `Hi ${name}!`
 }
 
 const addToUl = (text) => {

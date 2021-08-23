@@ -39,9 +39,9 @@ const rollupJS = function(){
 	return rollup
 		.rollup({
 			input: './src/main.js',
-			plugins: [resolve.nodeResolve(), babel.babel({ 
+			plugins: [resolve.nodeResolve(), commonjs(), babel.babel({ 
 				babelHelpers: 'bundled'
-			}), commonjs()]
+			})]
 		})
 		.then(bundle => {
 			return bundle.write({
@@ -73,11 +73,10 @@ gulp.task('browser-sync', function () {
             baseDir: './dist'
         }
 	});
-	// rollupJS()
+	rollupJS()
 	// transpileJS()
 	// transpileModules()
-	// transpileRJS()
 	// https://gulpjs.com/docs/en/getting-started/explaining-globs/
 	gulp.watch(['dist/*.html']).on('change', reload);
-	gulp.watch(['src']).on('change', transpileJS);
+	gulp.watch(['src/*.js']).on('change', transpileJS);
 });
