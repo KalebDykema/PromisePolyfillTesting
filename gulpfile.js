@@ -28,10 +28,6 @@ const transpileJS = function(){
 		.then(( )=> reload())
 }
 
-const bundle = function(){
-	return 
-}
-
 gulp.task('build', function (done) {
 	transpileJS()
 	done()
