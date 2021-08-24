@@ -10,10 +10,10 @@ const reload = browserSync.reload
 
 // Without requireJS
 const transpileJS = function(){
-	gulp.src(`src/*.js`)
-		.pipe(concat('transpiled.js'))
+	gulp.src(`./src/*.js`)
+		.pipe(concat('main.js'))
 		.pipe(babel())
-		.pipe(gulp.dest(`src/`))
+		.pipe(gulp.dest(`./dist/js`))
 	rollupJS()
 }
 
@@ -25,7 +25,7 @@ const rollupJS = function(){
 const bundle = function(){
 	return rollup
 		.rollup({
-			input: './src/transpiled.js',
+			input: './dist/js/main.js',
 			plugins: [resolve.nodeResolve(), commonjs()]
 		})
 		.then(bundle => {
@@ -35,6 +35,11 @@ const bundle = function(){
 			})
 		})
 }
+
+gulp.task('build', function (done) {
+	transpileJS()
+	done()
+})
 
 gulp.task('browser-sync', function () {
 	browserSync.init({
