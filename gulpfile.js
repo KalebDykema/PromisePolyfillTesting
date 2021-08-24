@@ -3,7 +3,6 @@ const rollup = require('rollup')
 const resolve = require('@rollup/plugin-node-resolve')
 const commonjs = require('@rollup/plugin-commonjs')
 const babel = require('gulp-babel')
-// const babel = require('@rollup/plugin-babel')
 const concat = require('gulp-concat')
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
@@ -14,15 +13,7 @@ const transpileJS = function(){
 		.pipe(concat('main.js'))
 		.pipe(babel())
 		.pipe(gulp.dest(`./dist/js`))
-	rollupJS()
-}
-
-const rollupJS = function(){
-	bundle()
-		.then(()=>reload())
-}
-
-const bundle = function(){
+		
 	return rollup
 		.rollup({
 			input: './dist/js/main.js',
@@ -34,6 +25,11 @@ const bundle = function(){
 				format: 'iife'
 			})
 		})
+		.then(( )=> reload())
+}
+
+const bundle = function(){
+	return 
 }
 
 gulp.task('build', function (done) {
@@ -47,10 +43,8 @@ gulp.task('browser-sync', function () {
             baseDir: './dist'
         }
 	});
-	// rollupJS()
 	transpileJS()
 	// https://gulpjs.com/docs/en/getting-started/explaining-globs/
 	gulp.watch(['dist/*.html']).on('change', reload);
 	gulp.watch(['src/*.js']).on('change', transpileJS);
-	// gulp.watch(['src/main.js']).on('change', rollupJS);
 });
