@@ -2740,7 +2740,7 @@
 
 	var sayHi = function sayHi(name) {
 	  return new Promise(function (resolve, reject) {
-	    console.log('Bye', name);
+	    console.log('Hi', name);
 	    resolve("Hi ".concat(name, "!"));
 	  }); // return `Hi ${name}!`
 	};
